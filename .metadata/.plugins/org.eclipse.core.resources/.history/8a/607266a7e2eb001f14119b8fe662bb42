@@ -1,0 +1,5 @@
+package com.kadirpasaoglu.config;
+
+public class AppConfig {
+
+}

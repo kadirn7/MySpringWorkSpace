@@ -1,0 +1,17 @@
+package com.kadirpasaoglu.main;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.kadirpasaoglu.model.User;
+import com.kadirpasaoglu.services.UserService;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+	
+	 
+	 
+	}
+
+}

@@ -1,0 +1,16 @@
+package com.kadirpasaoglu.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kadirpasaoglu.model.Employee;
+@RestController
+public class RestEmployeeController {
+	
+	@GetMapping(path="/employee")
+	public List<Employee> getAllEmployeeList(){
+		return null;
+	}
+}

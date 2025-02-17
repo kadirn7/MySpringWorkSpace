@@ -1,0 +1,24 @@
+package com.kadirpasaoglu.main;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.kadirpasaoglu.model.User;
+import com.kadirpasaoglu.services.UserService;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+	 UserService userService1 = new UserService();
+	 List<User> users = new ArrayList<>();
+
+	 users.add(new User("Kadir"));
+	 users.add(new User("Ayse"));
+	 users.add(new User("Mehmet"));
+
+	 userService1.setUserList(users);
+	 System.out.println("This is a regular log message.");
+	 
+	}
+
+}
