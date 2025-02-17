@@ -57,7 +57,7 @@ public class RestEmployeeController {
 	}
 
 	@PutMapping(path="/update-employee/{id}")
-	public Employee updateEmployee(@PathVariable(name="id",required = true)String id,@RequestBody UpdateEmployeeRequest newEmployee) {
-		return null;
+	public Employee updateEmployee(@PathVariable(name="id",required = true)String id,@RequestBody UpdateEmployeeRequest updateEmployeeRequest) {
+		return employeeService.updateEmployee(id,updateEmployeeRequest);
 	}
 }

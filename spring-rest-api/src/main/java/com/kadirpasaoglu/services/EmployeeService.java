@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.kadirpasaoglu.model.Employee;
+import com.kadirpasaoglu.model.UpdateEmployeeRequest;
 import com.kadirpasaoglu.repository.EmployeeRepository;
 
 @Service
@@ -30,7 +31,7 @@ public class EmployeeService {
 	public boolean deleteEmployee(String id) {
 		return employeeRepository.deleteEmployee(id);
 	}
-	public Employee updateEmployee(String id,Employee newEmployee) {
-		return employeeRepository.updateEmployee(id,newEmployee);
+	public Employee updateEmployee(String id,UpdateEmployeeRequest updateEmployeeRequest) {
+		return employeeRepository.updateEmployee(id,updateEmployeeRequest);
 	}
 }

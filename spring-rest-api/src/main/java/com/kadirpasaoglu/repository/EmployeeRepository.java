@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.kadirpasaoglu.model.Employee;
+import com.kadirpasaoglu.model.UpdateEmployeeRequest;
 
 
 @Repository
@@ -80,7 +81,7 @@ public class EmployeeRepository {
 		}
 		return false;
 	}
-	public Employee updateEmployee(@PathVariable(name="id",required = true)String id,@RequestBody Employee newEmployee) {
+	public Employee updateEmployee(@PathVariable(name="id",required = true)String id,@RequestBody UpdateEmployeeRequest updateEmployeeRequest) {
 		Employee findEmployee=null;
 		for(Employee employee:employeeList) {
 			if(id.equals(employee.getId())) {
@@ -89,8 +90,8 @@ public class EmployeeRepository {
 			}
 		}
 		if(findEmployee!=null) {
-			findEmployee.setFirstName(newEmployee.getFirstName());
-			findEmployee.setLastName(newEmployee.getLastName());
+			findEmployee.setFirstName(updateEmployeeRequest.getFirstName());
+			findEmployee.setLastName(updateEmployeeRequest.getLastName());
 			return findEmployee;
 		}
 		return null;
