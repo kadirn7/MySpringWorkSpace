@@ -30,4 +30,7 @@ public class EmployeeService {
 	public boolean deleteEmployee(String id) {
 		return employeeRepository.deleteEmployee(id);
 	}
+	public Employee updateEmployee(String id,Employee newEmployee) {
+		return employeeRepository.updateEmployee(id,newEmployee);
+	}
 }

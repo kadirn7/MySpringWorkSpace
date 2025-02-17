@@ -6,8 +6,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.kadirpasaoglu.model.Employee;
+
 
 @Repository
 public class EmployeeRepository {
@@ -76,5 +79,20 @@ public class EmployeeRepository {
 			return true;
 		}
 		return false;
+	}
+	public Employee updateEmployee(@PathVariable(name="id",required = true)String id,@RequestBody Employee newEmployee) {
+		Employee findEmployee=null;
+		for(Employee employee:employeeList) {
+			if(id.equals(employee.getId())) {
+				findEmployee=employee;
+				break;
+			}
+		}
+		if(findEmployee!=null) {
+			findEmployee.setFirstName(newEmployee.getFirstName());
+			findEmployee.setLastName(newEmployee.getLastName());
+			return findEmployee;
+		}
+		return null;
 	}
 }
