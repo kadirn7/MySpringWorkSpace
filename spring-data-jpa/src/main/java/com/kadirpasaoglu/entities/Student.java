@@ -13,6 +13,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+
 @Entity
 @Table(name="student")
 @Getter
@@ -28,7 +30,8 @@ public class Student {
 		private String firstName;
 		@Column(name="last_name",nullable = false)
 		private String lastName;
-		@Column(name="birth_date", nullable = true)
-		private Date birtOfDate;
+		@Column(name="birth_of_date", nullable = true)
+		private Date birthOfDate;
+		
 		
 }
