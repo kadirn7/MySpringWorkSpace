@@ -1,0 +1,5 @@
+package com.kadirpasaoglu.controller;
+
+public interface IStudentController {
+
+}

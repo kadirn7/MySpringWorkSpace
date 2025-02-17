@@ -1,9 +1,0 @@
-package com.kadirpasaoglu.model;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter	
-public class user {
-	private String firstname;
-}

@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kadirpasaoglu.model.Employee;
-import com.kadirpasaoglu.model.UpdateEmployeeRequest;
 import com.kadirpasaoglu.services.EmployeeService;
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -54,10 +52,5 @@ public class RestEmployeeController {
 	@DeleteMapping(path="/delete-employee/{id}")
 	public boolean deleteEmployee(@PathVariable(name="id",required = true)String id) {
 		return employeeService.deleteEmployee(id);
-	}
-
-	@PutMapping(path="/update-employee/{id}")
-	public Employee updateEmployee(@PathVariable(name="id",required = true)String id,@RequestBody UpdateEmployeeRequest updateEmployeeRequest) {
-		return employeeService.updateEmployee(id,updateEmployeeRequest);
 	}
 }

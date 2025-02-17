@@ -1,0 +1,7 @@
+package com.kadirpasaoglu.controller.impl;
+
+import com.kadirpasaoglu.controller.IStudentController;
+
+public class StudentControllerImp implements IStudentController{
+
+}

@@ -1,0 +1,23 @@
+package com.kadirpasaoglu.controller.impl;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kadirpasaoglu.controller.IStudentController;
+import com.kadirpasaoglu.entities.Student;
+
+
+@RestController
+@RequestMapping("/rest/api/student")
+public class StudentControllerImpl implements IStudentController {
+
+	@PostMapping("/save")
+	@Override
+	public Student saveStudent(@RequestBody Student student) {
+		
+		return null;
+	}
+
+}

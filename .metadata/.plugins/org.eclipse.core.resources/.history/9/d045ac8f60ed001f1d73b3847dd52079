@@ -1,0 +1,9 @@
+spring.application.name=spring-data-jpa
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/Deneme
+
+spring.datasource.username=postgres
+
+spring.datasource.password=sifre
+
+spring.jpa.hibernate.ddl-auto=create-drop
