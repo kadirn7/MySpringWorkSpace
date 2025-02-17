@@ -36,6 +36,7 @@ public class EmployeeRepository {
 		    return employeeList;
 		}
 		for(Employee employee:employeeList) {
+			
 			if(firstName!=null && lastName !=null) {
 				if(employee.getFirstName().equalsIgnoreCase(firstName)&& employee.getLastName().equals(lastName)) {
 					employeeWithParams.add(employee);
@@ -56,5 +57,24 @@ public class EmployeeRepository {
 		}
 		return employeeWithParams;
 	}
+
+	public Employee saveEmployee(Employee newEmployee) {
+		employeeList.add(newEmployee);
+		return newEmployee;
+	}
 	
+	public boolean deleteEmployee(String id) {
+		Employee findEmployee=null;
+		for(Employee employee:employeeList) {
+			if(id.equals(employee.getId())) {
+				findEmployee=employee;
+				break;
+			}
+		}
+		if(findEmployee!=null) {
+			employeeList.remove(findEmployee);
+			return true;
+		}
+		return false;
+	}
 }
