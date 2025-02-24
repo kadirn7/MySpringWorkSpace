@@ -1,5 +1,6 @@
 package com.kadirpasaoglu.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ import com.kadirpasaoglu.entities.Student;
 import com.kadirpasaoglu.repository.IStudentRepository;
 import com.kadirpasaoglu.services.IStudentService;
 
-import java.util.stream.Collectors;
+
 
 @Service
 public class StudentServiceImpl implements IStudentService{
@@ -34,10 +35,18 @@ public class StudentServiceImpl implements IStudentService{
 
     @Override
     public List<DtoStudent> getAllStudents() {
-        List<Student> students = studentRepository.findAll();
-        return students.stream()
-            .map(student -> new DtoStudent(student.getFirstName(), student.getLastName()))
-            .collect(Collectors.toList());
+    	List<DtoStudent> dtoList =new ArrayList<>();
+        List<Student> studentList = studentRepository.findAll();
+        
+        for(Student student:studentList) {
+        	DtoStudent dto=new DtoStudent();
+        	BeanUtils.copyProperties(student, dto);
+        	dtoList.add(dto);
+        }
+        return dtoList;
+       // return studentList.stream()
+       //     .map(student -> new DtoStudent(student.getFirstName(), student.getLastName()))
+       //     .collect(Collectors.toList());
     }
     @Override
     public DtoStudent getStudentById(Integer id) {
