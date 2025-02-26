@@ -5,13 +5,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kadirpasaoglu.dto.DtoAddress;
 import com.kadirpasaoglu.dto.DtoCustomer;
-import com.kadirpasaoglu.dto.DtoStudent;
+import com.kadirpasaoglu.entities.Address;
 import com.kadirpasaoglu.entities.Customer; 
 import com.kadirpasaoglu.repository.ICustomerRepository;
 import com.kadirpasaoglu.services.ICustomerService;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +48,17 @@ public class CustomerServiceImpl implements ICustomerService {
         return dtoCustomers;
     }
     @Override
-    public Customer getCustumerById(Long id) {
+    public DtoCustomer getCustumerById(Long id) {
+        DtoCustomer dtoCustomer= new DtoCustomer();
+        DtoAddress dtoAddress=new DtoAddress();
         Optional<Customer> optional= customerRepository.findById(id);
         if(optional.isPresent()){
             Customer customer= optional.get();
-            return customer;
+            Address address = optional.get().getAddress();
+            BeanUtils.copyProperties(customer, dtoCustomer);
+            BeanUtils.copyProperties(address, dtoAddress);
+            dtoCustomer.setAddress(dtoAddress);
+            return dtoCustomer;
         }
         return null;
     }

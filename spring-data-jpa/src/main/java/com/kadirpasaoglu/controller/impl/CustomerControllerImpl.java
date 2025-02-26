@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import com.kadirpasaoglu.controller.ICustomerContoller;
 import com.kadirpasaoglu.dto.DtoCustomer;
-import com.kadirpasaoglu.entities.Customer;
+
 import com.kadirpasaoglu.services.ICustomerService;
 
 
@@ -37,9 +37,8 @@ public class CustomerControllerImpl implements ICustomerContoller {
    
     @GetMapping("/list/{id}")
     @Override
-    public Customer getCustomerById(@PathVariable Long id) {
+    public DtoCustomer getCustomerById(@PathVariable Long id) {
        return customerService.getCustumerById(id);
-       
-        
+              
     }
 }
