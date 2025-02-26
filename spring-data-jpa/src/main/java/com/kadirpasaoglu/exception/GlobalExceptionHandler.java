@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     }
     //spring validationdan alınan hataları dönmek 
     @ExceptionHandler(value=MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiError> handleMethodArgumantNotValidException(MethodArgumentNotValidException ex){
+    public ResponseEntity<ApiError<Map<String,List<String>>>> handleMethodArgumantNotValidException(MethodArgumentNotValidException ex){
         Map<String,List<String>> errorsMap =new HashMap<>();
         for (ObjectError objError : ex.getBindingResult().getAllErrors()) {
            String fieldName= ((FieldError)objError).getField();
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
         private <T> ApiError<T> createApiError(T errors){
             ApiError<T> apiError = new ApiError<T>();
             apiError.setId(UUID.randomUUID().toString());
-            apiError.setErrorDate(new Date(0));
+            apiError.setErrorDate(new Date(System.currentTimeMillis()));
             apiError.setErrors(errors);
             return apiError;
 

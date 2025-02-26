@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kadirpasaoglu.dto.DtoStudent;
 import com.kadirpasaoglu.dto.DtoStudentIU;
+
 import com.kadirpasaoglu.entities.Student;
 import com.kadirpasaoglu.repository.IStudentRepository;
 import com.kadirpasaoglu.services.IStudentService;
@@ -70,5 +71,6 @@ public class StudentServiceImpl implements IStudentService{
     public void deleteStudent(Integer id) {
         studentRepository.deleteById(id);
     }
+   
 
 }

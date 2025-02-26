@@ -22,9 +22,9 @@ public class DtoStudentIU {
     @Size(min= 3, max=10, message = "boyutu 3ten kucuk olamaz ve 10 dan buyuk olamaz")
     private String firstName;
     @NotEmpty(message = "Lastname alani bos birakilamaz.")
-    @Size(min= 3, max=30, message = "Soyad 3-30 karakter arasında olmalıdır")
+    @Size(min= 3, max=30, message = "Soyad 3-30 karakter arasinda olmalidir")
     private String lastName;
-    @NotNull(message = "Doğum tarihi boş bırakılamaz")
+    @NotNull(message = "Doğum tarihi boş birakilamaz")
     private Date birthOfDate;
     @NotEmpty(message = "Email alani bos birakilamaz")
     @Email(message = "Lutfen gecerli bir email giriniz")
