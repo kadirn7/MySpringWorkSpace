@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kadirpasaoglu.controller.IHomeController;
-import com.kadirpasaoglu.entities.Home;
+import com.kadirpasaoglu.dto.DtoHome;
+
 import com.kadirpasaoglu.services.IHomeService;
 
 @RestController
@@ -20,8 +22,13 @@ public class HomeContollerImpl implements IHomeController{
 
     @Override
     @GetMapping("list")
-    public List<Home> getAllHomes() {
+    public List<DtoHome> getAllHomes() {
         return homeService.getAllHomes();
+    }
+    @GetMapping("list/{id}")
+    @Override
+    public DtoHome getHomeById(@PathVariable Long id) {
+        return homeService.getHomeByID(id);
     }
 
 }
