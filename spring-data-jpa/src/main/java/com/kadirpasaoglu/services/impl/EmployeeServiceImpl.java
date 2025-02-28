@@ -39,4 +39,20 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
         return dtoEmployees;
     }
+
+    @Override
+    public DtoEmployee getEmployeeById(Long id) {
+        Employee employee=employeeRepository.findById(id).orElse(null);
+        if(employee==null){
+            return null;
+        }
+        DtoEmployee dtoEmployee=new DtoEmployee();
+        DtoDepartment dtoDepartment=new DtoDepartment();
+        Department department=employee.getDepartment();
+        BeanUtils.copyProperties(department, dtoDepartment);
+        BeanUtils.copyProperties(employee, dtoEmployee);
+        dtoEmployee.setDepertment(dtoDepartment);
+        return dtoEmployee;
+
+    }
 }

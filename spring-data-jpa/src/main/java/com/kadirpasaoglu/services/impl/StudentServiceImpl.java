@@ -8,9 +8,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kadirpasaoglu.dto.DtoCourse;
 import com.kadirpasaoglu.dto.DtoStudent;
 import com.kadirpasaoglu.dto.DtoStudentIU;
-
+import com.kadirpasaoglu.entities.Course;
 import com.kadirpasaoglu.entities.Student;
 import com.kadirpasaoglu.repository.IStudentRepository;
 import com.kadirpasaoglu.services.IStudentService;
@@ -51,10 +52,21 @@ public class StudentServiceImpl implements IStudentService{
     }
     @Override
     public DtoStudent getStudentById(Integer id) {
-        Optional<Student> optional = studentRepository.findById(id);
-        if(optional.isPresent()){ 
-            Student student = optional.get();
-            return new DtoStudent(student.getFirstName(), student.getLastName());
+        DtoStudent dtoStudent= new DtoStudent();
+
+        Optional< Student> optional =studentRepository.findById(id);
+        if(optional.isEmpty()){
+            return null;
+        }
+        Student dbStudent =optional.get();
+        BeanUtils.copyProperties(dbStudent, dtoStudent);
+        if(dbStudent.getCourses()!=null&& !dbStudent.getCourses().isEmpty()){
+            for(Course course : dbStudent.getCourses()){
+                DtoCourse dtoCourse= new DtoCourse();
+                BeanUtils.copyProperties(course, dtoCourse);
+                dtoStudent.getCourses().add(dtoCourse);
+            }
+            return dtoStudent;
         }
         return null;
     }
@@ -65,7 +77,9 @@ public class StudentServiceImpl implements IStudentService{
         studentEntity.setLastName(student.getLastName());
         
         Student updatedStudent = studentRepository.save(studentEntity);
-        return new DtoStudent(updatedStudent.getFirstName(), updatedStudent.getLastName());
+        DtoStudent dto = new DtoStudent();
+        BeanUtils.copyProperties(updatedStudent, dto);
+        return dto;
     }
     @Override
     public void deleteStudent(Integer id) {
