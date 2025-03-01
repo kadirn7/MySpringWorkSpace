@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kadirpasaoglu.controller.IEmployeeController;
 import com.kadirpasaoglu.dto.DtoEmployee;
+import com.kadirpasaoglu.entities.RootEntity;
 import com.kadirpasaoglu.services.IEmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("/rest/api/employee")
-public class EmployeeControllerImpl implements IEmployeeController{
+public class EmployeeControllerImpl extends RestBaseControllerImpl implements IEmployeeController{
 
     @Autowired
     IEmployeeService employeeService;
@@ -30,9 +31,9 @@ public class EmployeeControllerImpl implements IEmployeeController{
     }
 
     @Override
-    @GetMapping("/{id}")
-    public DtoEmployee getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployeeById(id);
+    @GetMapping("/list/{id}")
+    public  RootEntity<DtoEmployee> getEmployeeById(@PathVariable Long id) {
+        return ok(employeeService.getEmployeeById(id));
     }
 
 }

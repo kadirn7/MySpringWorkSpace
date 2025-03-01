@@ -2,6 +2,7 @@ package com.kadirpasaoglu.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import com.kadirpasaoglu.dto.DtoDepartment;
 import com.kadirpasaoglu.dto.DtoEmployee;
 import com.kadirpasaoglu.entities.Department;
 import com.kadirpasaoglu.entities.Employee;
+import com.kadirpasaoglu.exception.BaseException;   
+import com.kadirpasaoglu.exception.ErrorMessage;
+import com.kadirpasaoglu.exception.MessageType;
 import com.kadirpasaoglu.repository.IEmployeeRepository;
 import com.kadirpasaoglu.services.IEmployeeService;
 
@@ -42,17 +46,21 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public DtoEmployee getEmployeeById(Long id) {
-        Employee employee=employeeRepository.findById(id).orElse(null);
-        if(employee==null){
-            return null;
+        DtoEmployee dtoEmployee= new DtoEmployee();
+        Optional<Employee> optional= employeeRepository.findById(id);
+        if(optional.isEmpty()){
+            throw new BaseException(new ErrorMessage(MessageType.NO_RECORD_EXIST,id.toString()));
         }
-        DtoEmployee dtoEmployee=new DtoEmployee();
-        DtoDepartment dtoDepartment=new DtoDepartment();
-        Department department=employee.getDepartment();
+        Employee employee= optional.get();
+        Department department= optional.get().getDepartment();
+        DtoDepartment dtoDepartment= new DtoDepartment();
+        
+        
         BeanUtils.copyProperties(department, dtoDepartment);
         BeanUtils.copyProperties(employee, dtoEmployee);
         dtoEmployee.setDepertment(dtoDepartment);
         return dtoEmployee;
+
 
     }
 }
