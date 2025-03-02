@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.kadirpasaoglu.model.user"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.config.AppConfig"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.services.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.boot.actuate.autoconfigure.wavefront.WavefrontProperties.Application"/>
@@ -27,18 +25,8 @@
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.services.EmployeeService"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.model.Employee"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.domain.EntityScan"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.controller.IStudentController"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.services.IStudentService"/>
@@ -53,4 +41,23 @@
     <fullyQualifiedTypeName name="com.kadirpasaoglu.entities.Student"/>
     <fullyQualifiedTypeName name="com.kadirpasaoglu.dto.DtoStudent"/>
     <fullyQualifiedTypeName name="org.springframework.beans.BeanUtils"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.MappedSuperclass"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat"/>
+    <fullyQualifiedTypeName name="java.util.Locale.IsoCountryCode"/>
+    <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat.ISO"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="com.kadirpasaoglu.model.Depertmant"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.ManyToOne"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
 </qualifiedTypeNameHistroy>

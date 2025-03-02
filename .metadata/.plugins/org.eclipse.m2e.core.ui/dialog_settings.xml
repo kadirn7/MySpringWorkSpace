@@ -2,6 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Kadir\source\Java\SpringWorkspace\jwt"/>
+			<item value="C:\Users\Kadir\source\Java\SpringWorkspace\gallerist"/>
+			<item value="C:\Users\Kadir\source\Java\gallerist"/>
+			<item value="C:\Users\Kadir\source\Java\SpringWorkspace\galerist"/>
 			<item value="C:\Users\Kadir\source\Java\SpringWorkspace\spring-data-jpa"/>
 			<item value="C:\Users\Kadir\source\Java\SpringWorkspace\spring-rest-api"/>
 			<item value="C:\Users\Kadir\source\Java\SpringWorkspace\spring-core"/>
