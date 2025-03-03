@@ -21,12 +21,12 @@ public class JwtService {
 	public static final String SECRET_KEY = "5N+6yAw9UJlZGIE3ivXxkQlxnb9BauSkvcdSJ447DQE=";
 
 	public String generateToken(UserDetails userDetails) {
-		Map<String, Object> claimsMap   =  new HashMap<>();
-		claimsMap.put("role", "ADMIN");
-//		
+	//	Map<String, Object> claimsMap   =  new HashMap<>();
+	//	claimsMap.put("role", "ADMIN");
+		
 		return Jwts.builder()
 		.setSubject(userDetails.getUsername())
-		.addClaims(claimsMap)
+		//.addClaims(claimsMap)
 		.setIssuedAt(new Date())
 		.setExpiration(new Date(System.currentTimeMillis() + 1000*60*60*2))
 		.signWith(getKey(), SignatureAlgorithm.HS256)

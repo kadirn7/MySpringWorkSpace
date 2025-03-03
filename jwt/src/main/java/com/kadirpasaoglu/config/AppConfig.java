@@ -43,6 +43,7 @@ public class AppConfig {
 		authenticationProvider.setUserDetailsService(userDetailsService());
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
 		
+		
 		return authenticationProvider;
 	}
 	
