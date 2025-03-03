@@ -1,7 +1,6 @@
 package com.kadirpasaoglu.config;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,44 +18,42 @@ import com.kadirpasaoglu.repository.UserRepository;
 
 @Configuration
 public class AppConfig {
-    
-    @Autowired
-    private UserRepository  userRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return new UserDetailsService() {
-
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                Optional<User> optional= userRepository.findByUsername(username);
-                if(optional.isPresent()){
-                    return optional.get();
-                }
-                throw new UsernameNotFoundException("User not found with username: " + username);
-            }
-            
-        };
-    }
-
-    @Bean 
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-
-        return authenticationProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
-        return configuration.getAuthenticationManager();
-    }
-
-    @Bean //Şifrelerimizi kritiptolamak için
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsService() {
+			
+			@Override
+			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+			 Optional<User> optional = 	userRepository.findByUsername(username);
+			 if(optional.isPresent()) {
+				 return optional.get();
+			 }
+			 return null;
+			}
+		};
+	}
+	
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService());
+		authenticationProvider.setPasswordEncoder(passwordEncoder());
+		
+		return authenticationProvider;
+	}
+	
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+		return configuration.getAuthenticationManager();
+	}
+	
+	
+	@Bean //Şifrelerimizi kriptolamak için
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

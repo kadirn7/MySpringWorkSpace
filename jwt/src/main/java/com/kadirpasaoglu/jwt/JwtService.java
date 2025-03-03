@@ -17,44 +17,55 @@ import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtService {
-    public static final String SECRET_KEY ="8Db+GKd6tgrv+hW1MxwQw+pJX/Ailtq4N38ZFopTUSQ=";
-    public String generateToken(UserDetails userDetails){
-        Map<String,Object> claimsMap= new HashMap<>();
-        claimsMap.put("role", "ADMIN");
+	
+	public static final String SECRET_KEY = "5N+6yAw9UJlZGIE3ivXxkQlxnb9BauSkvcdSJ447DQE=";
 
-        return Jwts.builder()
-        .setClaims(claimsMap)
-        .setSubject(userDetails.getUsername())
-        .setIssuedAt(new Date())
-        .setExpiration(new Date(System.currentTimeMillis()+ 1000*60*60*2)) //token bitiş süresi
-        .signWith(getKey(),SignatureAlgorithm.HS256)
-        .compact();
-    }
-
-    public <T> T exportToken(String token, Function<Claims,T> claimsFunction){
-        //token verip içindeki bilgileri almak için gereken yapi 
-        //mesela subject i çekeceksin bu lazım
-        Claims claims=Jwts
-        .parserBuilder()
-        .setSigningKey(getKey()) 
-        .build()
-        .parseClaimsJws(token).getBody();
-
-        return claimsFunction.apply(claims);
-    }
-
-    public String getUsernameByToken(String token){
-        return  exportToken(token, Claims::getSubject);
-    }
-
-    public boolean isTokenExpired(String token){
-         Date expiredDate= exportToken(token,Claims::getExpiration );
-        return new Date().before(expiredDate);    //zaman tokendan kücükse hala token geçerlidir.
-    }
-
-    public Key getKey(){
-        byte[] keyBytes= Decoders.BASE64.decode(SECRET_KEY);
-        return Keys.hmacShaKeyFor(keyBytes);
-
-    }
+	public String generateToken(UserDetails userDetails) {
+		Map<String, Object> claimsMap   =  new HashMap<>();
+		claimsMap.put("role", "ADMIN");
+//		
+		return Jwts.builder()
+		.setSubject(userDetails.getUsername())
+		.addClaims(claimsMap)
+		.setIssuedAt(new Date())
+		.setExpiration(new Date(System.currentTimeMillis() + 1000*60*60*2))
+		.signWith(getKey(), SignatureAlgorithm.HS256)
+		.compact();
+	}
+	
+	
+	public  Object getClaimsByKey(String token , String key) {
+		Claims claims =  getClaims(token);
+		return claims.get(key);
+	}
+	
+	
+	public  Claims getClaims(String token) {
+		Claims claims = Jwts
+				.parserBuilder()
+				.setSigningKey(getKey())
+				.build()
+				.parseClaimsJws(token).getBody();
+		return claims;
+	}
+	
+	public <T> T exportToken(String token , Function<Claims, T> claimsFunction) {
+		Claims claims =  getClaims(token);
+		return claimsFunction.apply(claims);
+	}
+	
+	public String getUsernameByToken(String token) {
+		return exportToken(token, Claims::getSubject);
+	}
+	
+	
+	public boolean isTokenExpired(String token) {
+		Date expiredDate= exportToken(token, Claims::getExpiration);
+		return new Date().before(expiredDate);
+	}
+	
+	public  Key getKey() {
+		byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+		return Keys.hmacShaKeyFor(keyBytes);
+	}
 }

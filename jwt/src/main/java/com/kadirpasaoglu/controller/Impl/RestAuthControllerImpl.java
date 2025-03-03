@@ -20,9 +20,9 @@ public class RestAuthControllerImpl implements IRestAuthController{
 
     
     @PostMapping("/register")
-    @Override
-    public DtoUser register(@Valid @RequestBody AuthRequest request) {
-        return authService.register(request);
-    }
+	@Override
+	public DtoUser register(@Valid @RequestBody AuthRequest request) {
+		return authService.register(request);
+	}
     
 }
